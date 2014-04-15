@@ -1,0 +1,59 @@
+diff --git a/lib/Drupal/environment_indicator/Entity/EnvironmentIndicator.php b/lib/Drupal/environment_indicator/Entity/EnvironmentIndicator.php
+index ba2de69..334cc96 100644
+--- a/lib/Drupal/environment_indicator/Entity/EnvironmentIndicator.php
++++ b/lib/Drupal/environment_indicator/Entity/EnvironmentIndicator.php
+@@ -8,8 +8,6 @@
+ namespace Drupal\environment_indicator\Entity;
+ 
+ use Drupal\Core\Config\Entity\ConfigEntityBase;
+-use Drupal\Core\Config\Entity\ConfigEntityInterface;
+-use Drupal\Core\Entity\Annotation\EntityType;
+ use Drupal\Core\Annotation\Translation;
+ 
+ /**
+@@ -19,7 +17,6 @@
+  *   id = "environment_indicator",
+  *   label = @Translation("Environment Indicator"),
+  *   controllers = {
+- *     "storage" = "Drupal\Core\Config\Entity\ConfigStorageController",
+  *     "access" = "Drupal\environment_indicator\EnvironmentIndicatorAccessController",
+  *     "list" = "Drupal\environment_indicator\EnvironmentIndicatorListController",
+  *     "form" = {
+@@ -28,7 +25,7 @@
+  *     }
+  *   },
+  *   admin_permission = "administer environment indicator settings",
+- *   config_prefix = "environment_indicator.environment",
++ *   config_prefix = "environment",
+  *   entity_keys = {
+  *     "id" = "machine",
+  *     "label" = "human_name",
+@@ -41,7 +38,7 @@
+  *   }
+  * )
+  */
+-class EnvironmentIndicator extends ConfigEntityBase implements ConfigEntityInterface {
++class EnvironmentIndicator extends ConfigEntityBase {
+ 
+   /**
+    * The machine-readable ID for the configurable.
+@@ -99,17 +96,4 @@ public function label($langcode = NULL) {
+     return $this->get('name');
+   }
+ 
+-  /**
+-   * {@inheritdoc}
+-   */
+-  public function uri() {
+-    return array(
+-      'path' => 'admin/config/development/environment-indicator/manage/' . $this->id(),
+-      'options' => array(
+-        'entity_type' => $this->entityType,
+-        'entity' => $this,
+-      ),
+-    );
+-  }
+-
+-}
+-
++}

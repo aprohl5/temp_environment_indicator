@@ -1,0 +1,5 @@
+environment_indicator.add_local_action:
+  route_name: environment_indicator.add
+  title: 'Add environment indicator'
+  appears_on:
+    - environment_indicator.list
